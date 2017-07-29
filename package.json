@@ -1,0 +1,27 @@
+{
+  "name": "generator-firebase-cloud-functions",
+  "version": "0.1.1",
+  "description": "Generator for setting up tools that help developers write good Firebase Google Cloud Functions.",
+  "main": "app/index.js",
+  "author": "Conrad Lippert-Zajaczkowski",
+  "license": "MIT",
+  "repository": "https://github.com/PrinceCornNM/generator-firebase-cloud-functions",
+  "homepage": "https://github.com/PrinceCornNM/generator-firebase-cloud-functions",
+  "files": [
+    "app",
+    "functions"
+  ],
+  "keywords": [
+    "generators",
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "chalk": "^2.0.1",
+    "file": "0.2.2",
+    "lodash": "4.17.4",
+    "shelljs": "^0.7.8",
+    "yeoman-generator": "^1.1.1",
+    "yosay": "2.0.0"
+  },
+  "devDependencies": {}
+}

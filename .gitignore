@@ -1,0 +1,7 @@
+# Logs
+logs
+*.log
+
+# Packages and Components
+node_modules
+bower_components
