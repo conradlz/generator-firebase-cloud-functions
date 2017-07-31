@@ -9,7 +9,7 @@
   "homepage": "https://github.com/PrinceCornNM/generator-firebase-cloud-functions",
   "files": [
     "app",
-    "functions"
+    "function"
   ],
   "keywords": [
     "generators",
