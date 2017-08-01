@@ -2,23 +2,16 @@
 
 <%= projectDescription %>
 
-## Building
-
-In order to build the project run :
-```
-npm run build
-```
-
 ## Deploying
 
-In order to deploy the project run:
+In order to deploy the project, you must navigate to the root of the project and run:
 ```
-firebase deploy --only functions
+npm run deploy
 ```
 
 ## Testing
 
-In order to test the project run:
+In order to test the project, you must navigate to the root of the project and run:
 ```
 npm test
 ```

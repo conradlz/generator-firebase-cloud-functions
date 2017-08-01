@@ -1,6 +1,6 @@
 {
   "name": "generator-firebase-cloud-functions",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Generator for setting up tools that help developers write good Firebase Google Cloud Functions.",
   "main": "app/index.js",
   "author": "Conrad Lippert-Zajaczkowski",
