@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "cd functions; ./node_modules/mocha/bin/mocha; cd -",
+    "test": "cd functions/src; babel ./*.js --presets latest -d ../dist; cd ../dist; uglifyjs-folder ./ -e -o ./ -x .js; cd ..; ./node_modules/mocha/bin/mocha; cd -",
+    "build": "cd functions/src; babel ./*.js --presets latest -d ../dist; cd ../dist; uglifyjs-folder ./ -e -o ./ -x .js; cd ../..",
     "deploy": "cd functions/src; babel ./*.js --presets latest -d ../dist; cd ../dist; uglifyjs-folder ./ -e -o ./ -x .js; cd ../..; firebase deploy --only functions"
   }
 }

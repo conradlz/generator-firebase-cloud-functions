@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-const <%= nameCamelCase %> = require('../src/<%= nameKebabCase%>.js');
+const <%= nameCamelCase %> = require('../dist/<%= nameKebabCase%>.js');
 
 describe('<%= nameCamelCase %> works', function () {
   describe('maybe a bit more context here', function () {

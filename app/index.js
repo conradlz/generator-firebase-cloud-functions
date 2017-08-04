@@ -30,25 +30,9 @@ module.exports = class extends Generator {
       type: 'text',
       name: 'projectDescription',
       message: 'What is the description for this project?'
-    }, {
-      type: 'list',
-      name: 'babel',
-      message: 'Choose if you want to use new babel transpiling',
-      choices: ['true', 'false'],
-      default: 'true',
-      when: !this.options.babel
-    }, {
-      type: 'list',
-      name: 'uglify',
-      message: 'Choose if you want to use uglify js compression',
-      choices: ['true', 'false'],
-      default: 'true',
-      when: !this.options.uglify
     }];
 
     this.prompt(prompts).then(answers => {
-      this.options.babel = (answers.babel == 'true');
-      this.options.uglify = (answers.uglify == 'true');
       this.options.projectName = answers.projectName;
       this.options.projectDescription = answers.projectDescription;
       done();
@@ -66,16 +50,17 @@ module.exports = class extends Generator {
       functionsDir + 'src/index.js'
     );
 
-    // builds main export
+    // builds functions README
     this.fs.copyTpl(
       this.templatePath('README.md'),
-      'README.md',
+      functionsDir + 'README.md',
       {
         projectName: this.options.projectName,
         projectDescription: this.options.projectDescription
       }
     );
 
+    // builds package.json for specific scripts
     this.fs.copyTpl(
       this.templatePath('package.json'),
       'package.json',
@@ -104,45 +89,41 @@ module.exports = class extends Generator {
   }
 
   install() {
+    // dependencies needed for the firebase functions
     let dependencies = [
       'firebase-functions',
       'firebase-admin',
       'mocha',
       'chai',
       'chai-as-promised',
-      'sinon'
+      'sinon',
+      'babel-runtime'
     ];
 
-    // install babel if desired
-    if (this.options.babel) {
-      dependencies.push('babel-runtime');
+    // dependencies for babel for developement
+    let devDependencies = [
+      'babel-cli',
+      'babel-plugin-transform-runtime',
+      'babel-preset-latest',
+    ];
 
-      let devDependencies = [
-        'babel-cli',
-        'babel-plugin-transform-runtime',
-        'babel-preset-latest',
-      ];
-      this.npmInstall(devDependencies, {
-        saveDev: true
-      });
-    }
+    // dependencies needed for developer's machine
+    let globalDependencies = [
+      'babel-eslint@7',
+      'eslint@3.x',
+      'uglify-js',
+      'uglifyjs-folder'
+    ];
 
-    // install the test functions and firebase functions
+    this.npmInstall(devDependencies, {
+      saveDev: true
+    });
+
+    // install the firebase function dependencies
     this.npmInstall(dependencies, {
       save: true,
       prefix: 'functions'
     });
-
-    // install the global dependencies
-    let globalDependencies = [
-      'babel-eslint@7',
-      'eslint@3.x'
-    ];
-
-    if (this.options.uglify) {
-      globalDependencies.push('uglify-js');
-      globalDependencies.push('uglifyjs-folder');
-    }
 
     this.npmInstall(globalDependencies, {
       global: true

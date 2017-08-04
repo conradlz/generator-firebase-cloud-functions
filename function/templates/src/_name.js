@@ -1,6 +1,9 @@
+// const functions = require('firebase-functions');
+// const anotherFunction = require('./<another function>.js')
+
 /**
- * <%= nameCamelCase %> returns...
+ * <%= nameCamelCase %> ...
  */
-exports.<%= nameCamelCase %> = function() {
-  // some functionality
+module.exports = function() {
+  // implementation
 }
